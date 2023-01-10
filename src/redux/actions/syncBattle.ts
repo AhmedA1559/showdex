@@ -151,7 +151,7 @@ export const syncBattle = createAsyncThunk<CalcdexBattleState, SyncBattlePayload
       battleState.includedTeambuilder = true;
     }
 
-    for (const playerKey of <CalcdexPlayerKey[]> ['p1', 'p2']) {
+    for (const playerKey of <CalcdexPlayerKey[]> ['p1', 'p2', 'p3', 'p4']) {
       // l.debug('Processing player', playerKey);
 
       if (!(playerKey in battle) || battle[playerKey]?.sideid !== playerKey) {

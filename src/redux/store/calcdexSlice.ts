@@ -1487,6 +1487,8 @@ export const calcdexSlice = createSlice<CalcdexSliceState, CalcdexSliceReducers,
         opponentKey = null,
         p1,
         p2,
+        p3,
+        p4,
         field,
         ...payload
       } = action.payload;
@@ -1558,8 +1560,32 @@ export const calcdexSlice = createSlice<CalcdexSliceState, CalcdexSliceReducers,
         },
 
         // currently unsupported
-        p3: null,
-        p4: null,
+        p3: {
+          sideid: 'p3',
+          name: null,
+          rating: null,
+          activeIndex: -1,
+          activeIndices: [],
+          selectionIndex: 0,
+          autoSelect: true,
+          maxPokemon: defaultMaxPokemon,
+          pokemonOrder: [],
+          ...p3,
+          pokemon: [],
+        },
+        p4: {
+          sideid: 'p4',
+          name: null,
+          rating: null,
+          activeIndex: -1,
+          activeIndices: [],
+          selectionIndex: 0,
+          autoSelect: true,
+          maxPokemon: defaultMaxPokemon,
+          pokemonOrder: [],
+          ...p4,
+          pokemon: [],
+        },
 
         field: field || sanitizeField(),
       };
@@ -1690,6 +1716,8 @@ export const calcdexSlice = createSlice<CalcdexSliceState, CalcdexSliceReducers,
         battleId,
         p1,
         p2,
+        p3,
+        p4
       } = action.payload;
 
       if (!battleId) {
@@ -1704,7 +1732,7 @@ export const calcdexSlice = createSlice<CalcdexSliceState, CalcdexSliceReducers,
         return;
       }
 
-      if (!Object.keys(p1 || {}).length && !Object.keys(p2 || {}).length) {
+      if (!Object.keys(p1 || {}).length && !Object.keys(p2 || {}).length && !Object.keys(p3 || {}).length && !Object.keys(p4 || {}).length) {
         l.error('Found no player to update!');
       }
 
@@ -1720,6 +1748,20 @@ export const calcdexSlice = createSlice<CalcdexSliceState, CalcdexSliceReducers,
           ...state[battleId].p2,
           ...p2,
         };
+      }
+
+      if (p3) {
+        state[battleId].p3 = {
+          ...state[battleId].p3,
+          ...p3,
+        }
+      }
+
+      if (p4) {
+        state[battleId].p4 = {
+          ...state[battleId].p4,
+          ...p4,
+        }
       }
 
       l.debug(

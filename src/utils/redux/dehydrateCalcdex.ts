@@ -156,6 +156,8 @@ export const dehydrateCalcdex = (
     opponentKey,
     p1,
     p2,
+    p3,
+    p4,
     field,
   } = state;
 
@@ -175,7 +177,7 @@ export const dehydrateCalcdex = (
     `n:${dehydrateValue(turn)}`,
   ];
 
-  for (const player of [p1, p2]) {
+  for (const player of [p1, p2, p3, p4]) {
     if (!player?.sideid) {
       continue;
     }
