@@ -35,10 +35,6 @@ export const Calcdex = ({
   const colorScheme = useColorScheme();
   const mobile = useMobileViewport();
 
-  if (!shouldRender) {
-    return null;
-  }
-
   const renderAsOverlay = renderMode === 'overlay';
 
   const {
@@ -49,12 +45,16 @@ export const Calcdex = ({
   } = state;
 
   const topKey = authPlayerKey && playerKey === authPlayerKey
-    ? settings?.authPosition === 'bottom'
-      ? opponentKey
-      : (settings?.authPosition === 'auto' ? 'p1' : playerKey)
-    : playerKey;
+      ? settings?.authPosition === 'bottom'
+          ? opponentKey
+          : (settings?.authPosition === 'auto' ? 'p1' : playerKey)
+      : playerKey;
 
   const [bottomKey, setOpponent] = React.useState<CalcdexPlayerKey>(playerKey == 'p1' ? 'p2' : 'p1');
+
+  if (!shouldRender) {
+    return null;
+  }
 
   return (
     <div
