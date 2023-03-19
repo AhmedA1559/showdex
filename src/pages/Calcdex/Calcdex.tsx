@@ -114,7 +114,7 @@ export const Calcdex = ({
         (settings?.authPosition === 'bottom' && opponentKey)
           || (settings?.authPosition === 'auto' && ((playerKey === 'p1' && playerKey) || opponentKey))
       )
-  ) || (!authPlayerKey && switchPlayers ? opponentKey : playerKey);
+  ) || (!authPlayerKey && switchPlayers ? opponentKey : authPlayerKey || playerKey);
 
   const bottomKey = topKey === playerKey
     ? opponentKey
